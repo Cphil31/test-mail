@@ -1,16 +1,33 @@
 <?php
+function genererChaineAleatoire($longueur = 10)
+{
+ $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ $longueurMax = strlen($caracteres);
+ $chaineAleatoire = '';
+ for ($i = 0; $i < $longueur; $i++)
+ {
+ $chaineAleatoire .= $caracteres[rand(0, $longueurMax - 1)];
+ }
+ return $chaineAleatoire;
+}
+//Utilisation de la fonction
 
-function sendmail () {
+$chaine = genererChaineAleatoire(20);
+$s= strval($chaine);
+//var_dump(strval ( genererChaineAleatoire(20))) ;
+
+function sendmail ($s) {
         
-    $subject = "Nouveau mail test";
+    $subject = "confirmation code";
     //$prenom = $_POST['prenom'];
     //$nom = $_POST['nom'];
-    $monEmail = "phil31780@live.fr";
+    //$monEmail = "phil31780@live.fr";
+    $monEmail = "contact@defouloir.fr";
     //$email_eleve = $_POST['log'];
     //$formule = $_POST['id_formule'];
 
     // $message 
-    $message = "Hello Philippe";
+    $message = "confirmation de code : $s";
 
     $content=" \n\n Message: $message ";
     $destinataire = "cecilephilippe31@gmail.com";
@@ -29,7 +46,7 @@ function sendmail () {
     return $sendmail;
 }
 
-sendmail();
+sendmail($s);
 
 ?>
 
